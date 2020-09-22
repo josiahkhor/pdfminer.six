@@ -60,16 +60,48 @@ class TestPdf2Txt():
     def test_contrib_2b(self):
         run('contrib/2b.pdf', '-A -t xml')
 
+    def test_contrib_issue_350(self):
+        """Regression test for
+        https://github.com/pdfminer/pdfminer.six/issues/350"""
+        run('contrib/issue-00352-asw-oct96-p41.pdf')
+
     def test_scancode_patchelf(self):
-        """Regression test for # https://github.com/euske/pdfminer/issues/96"""
+        """Regression test for https://github.com/euske/pdfminer/issues/96"""
         run('scancode/patchelf.pdf')
 
     def test_contrib_hash_two_complement(self):
-        """Check that unsigned integer is added correctly to encryption hash.
+        """Check that unsigned integer is added correctly to encryption hash.et
 
         See https://github.com/pdfminer/pdfminer.six/issues/186
         """
         run('contrib/issue-00352-hash-twos-complement.pdf')
+
+    def test_contrib_excel(self):
+        """Regression test for
+         https://github.com/pdfminer/pdfminer.six/issues/369
+         """
+        run('contrib/issue-00369-excel.pdf', '-t html')
+
+    def test_encryption_aes128(self):
+        run('encryption/aes-128.pdf', '-P foo')
+
+    def test_encryption_aes128m(self):
+        run('encryption/aes-128-m.pdf', '-P foo')
+
+    def test_encryption_aes256(self):
+        run('encryption/aes-256.pdf', '-P foo')
+
+    def test_encryption_aes256m(self):
+        run('encryption/aes-256-m.pdf', '-P foo')
+
+    def test_encryption_base(self):
+        run('encryption/base.pdf', '-P foo')
+
+    def test_encryption_rc4_40(self):
+        run('encryption/rc4-40.pdf', '-P foo')
+
+    def test_encryption_rc4_128(self):
+        run('encryption/rc4-128.pdf', '-P foo')
 
 
 class TestDumpImages:
